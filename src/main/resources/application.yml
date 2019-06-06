@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: ie
+  mvc:
+    favicon:
+      enabled: false
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: false
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/ie
+    username: ie
+    password: 123456
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: true
+    properties:
+      hibernate.jdbc.lob.non_contextual_creation: true
+      hibernate.hbm2ddl.auto: update
+      hibernate.id.new_generator_mappings: true
+
+ie:
+  security:
+      token-validity-in-seconds: 5000
+      token-validity-in-seconds-for-remember-me: 1000000
+      secret: dbsogjw3Fre54434slnslns335ugshey425gffg353ADF34fsshe45dfhgheQWQffsaDFDSSF554SFDSFShkllrojerkvna348ydgjhr8ygfgkjwdfg45
+      base64Secret: ZGJzb2dqdzNGcmU1NDQzNHNsbnNsbnMzMzV1Z3NoZXk0MjVnZmZnMzUzQURGMzRmc3NoZTQ1ZGZoZ2hlUVdRZmZzYURGRFNTRjU1NFNGRFNGU2hrbGxyb2plcmt2bmEzNDh5ZGdqaHI4eWdmZ2tqd2RmZzQ1
+      pass-hash-key: M64a72n72bmewbwFoed4tlknbed97y5jnlkvdwefisgfonDASfhbfsdgTRWTG436ugjm547djgfx3
+      user-salt-length: 30
