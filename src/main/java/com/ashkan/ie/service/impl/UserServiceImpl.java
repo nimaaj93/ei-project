@@ -6,20 +6,18 @@ import com.ashkan.ie.domain.UserAuthority;
 import com.ashkan.ie.dto.ProfileDTO;
 import com.ashkan.ie.enumeration.UserType;
 import com.ashkan.ie.exception.DuplicateUserException;
+import com.ashkan.ie.exception.UnknownException;
+import com.ashkan.ie.exception.UserNotFoundException;
 import com.ashkan.ie.model.input.ResetPassModel;
 import com.ashkan.ie.model.input.UserRegistrationModel;
 import com.ashkan.ie.repository.UserAuthenticationRepository;
 import com.ashkan.ie.repository.UserAuthorityRepository;
 import com.ashkan.ie.repository.UserRepository;
+import com.ashkan.ie.security.SecurityUtils;
 import com.ashkan.ie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.jws.soap.SOAPBinding;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * Created by K550 VX on 6/6/2019.
@@ -36,7 +34,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ProfileDTO getProfile() {
-        return null;
+
+        String userEmail = SecurityUtils.getCurrentUserLogin()
+                .orElseThrow(UnknownException::new);
+
+        User user = userRepository.findOneByEmail(userEmail)
+                .orElseThrow(UserNotFoundException::new);
+
+        return mapToProfile(user);
+    }
+
+    private ProfileDTO mapToProfile(User user) {
+        ProfileDTO profileDTO = new ProfileDTO();
+        profileDTO.setId(user.getId());
+        profileDTO.setActivated(user.isActivated());
+        profileDTO.setEmail(user.getEmail());
+        profileDTO.setFullname(user.getFullname());
+        profileDTO.setUserType(user.getUserAuthority().getAuthorityVal());
+        return profileDTO;
     }
 
     @Override

@@ -15,10 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.PATCH;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -38,7 +35,6 @@ public class UserResource {
 
     @POST
     @Path("/authenticate")
-//    @Produces(MediaType.APPLICATION_JSON)
     public Response authenticate(AuthenticateModel model) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
@@ -57,6 +53,12 @@ public class UserResource {
     public Response register(UserRegistrationModel model) {
         userService.register(model);
         return Response.ok("OK").build();
+    }
+
+    @GET
+    @Path("/profile")
+    public Response getProfile() {
+        return Response.ok(userService.getProfile()).type(MediaType.APPLICATION_JSON).build();
     }
 
 }
