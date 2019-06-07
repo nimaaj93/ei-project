@@ -6,6 +6,7 @@ import com.ashkan.ie.domain.UserAuthority;
 import com.ashkan.ie.dto.ProfileDTO;
 import com.ashkan.ie.enumeration.UserType;
 import com.ashkan.ie.exception.DuplicateUserException;
+import com.ashkan.ie.exception.InvalidOldPasswordException;
 import com.ashkan.ie.exception.UnknownException;
 import com.ashkan.ie.exception.UserNotFoundException;
 import com.ashkan.ie.model.input.ResetPassModel;
@@ -94,6 +95,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void resetPassword(ResetPassModel model) {
+        String userName = SecurityUtils.getCurrentUserLogin()
+                .orElseThrow(() -> new IllegalStateException("No username found in security context!"));
+        User user = userRepository.findOneByEmail(userName)
+                .orElseThrow(() -> new IllegalStateException("User not found!"));
 
+        UserAuthentication userAuthentication = user.getUserAuthentication();
+        if (!userAuthentication.getPassword().equals(model.getCurrentPassword())) {
+            throw new InvalidOldPasswordException();
+        }
+
+        userAuthentication.setPassword(model.getNewPassword());
+        userAuthenticationRepository.save(userAuthentication);
     }
 }
