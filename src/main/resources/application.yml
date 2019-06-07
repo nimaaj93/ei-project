@@ -4,6 +4,8 @@ spring:
   mvc:
     favicon:
       enabled: false
+  jersey:
+    init.jersey.config.server.response.setStatusOverSendError: true
   devtools:
     restart:
       enabled: true

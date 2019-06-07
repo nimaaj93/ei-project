@@ -92,4 +92,8 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public void resetPassword(ResetPassModel model) {
+
+    }
 }

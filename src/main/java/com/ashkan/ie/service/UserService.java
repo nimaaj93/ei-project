@@ -13,4 +13,6 @@ public interface UserService {
 
     void register(UserRegistrationModel model);
 
+    void resetPassword(ResetPassModel model);
+
 }
