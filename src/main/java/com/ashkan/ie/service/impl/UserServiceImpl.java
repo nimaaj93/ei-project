@@ -4,6 +4,7 @@ import com.ashkan.ie.domain.User;
 import com.ashkan.ie.domain.UserAuthentication;
 import com.ashkan.ie.domain.UserAuthority;
 import com.ashkan.ie.dto.ProfileDTO;
+import com.ashkan.ie.enumeration.UserStatus;
 import com.ashkan.ie.enumeration.UserType;
 import com.ashkan.ie.exception.DuplicateUserException;
 import com.ashkan.ie.exception.InvalidOldPasswordException;
@@ -79,6 +80,7 @@ public class UserServiceImpl implements UserService {
         } else {
             user.setActivated(false);
         }
+        user.setUserStatus(UserStatus.ENABLED);
 
         UserAuthentication userAuthentication = new UserAuthentication();
         userAuthentication.setUser(user);

@@ -50,7 +50,6 @@ public class UserResource {
     }
 
     @POST
-    @Path("/register")
     public Response register(UserRegistrationModel model) {
         userService.register(model);
         return Response.ok("OK").build();

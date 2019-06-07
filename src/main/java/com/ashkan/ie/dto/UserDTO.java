@@ -1,32 +1,17 @@
-package com.ashkan.ie.domain;
+package com.ashkan.ie.dto;
 
 import com.ashkan.ie.enumeration.UserStatus;
-
-import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import com.ashkan.ie.enumeration.UserType;
 
 /**
- * Created by K550 VX on 6/6/2019.
+ * Created by K550 VX on 6/7/2019.
  */
-@Entity
-@Table(name = "ie_user")
-public class User extends BaseEntity {
+public class UserDTO {
 
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String fullname;
     private String email;
-
-    @OneToOne(mappedBy = "user")
-    private UserAuthentication userAuthentication;
-
-    @OneToOne(mappedBy = "user")
-    private UserAuthority userAuthority;
+    private UserType userType;
     private boolean activated;
     private UserStatus userStatus;
 
@@ -54,20 +39,12 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    public UserAuthentication getUserAuthentication() {
-        return userAuthentication;
+    public UserType getUserType() {
+        return userType;
     }
 
-    public void setUserAuthentication(UserAuthentication userAuthentication) {
-        this.userAuthentication = userAuthentication;
-    }
-
-    public UserAuthority getUserAuthority() {
-        return userAuthority;
-    }
-
-    public void setUserAuthority(UserAuthority userAuthority) {
-        this.userAuthority = userAuthority;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     public boolean isActivated() {
