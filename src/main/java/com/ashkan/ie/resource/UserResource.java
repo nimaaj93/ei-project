@@ -4,6 +4,7 @@ import com.ashkan.ie.model.JWTToken;
 import com.ashkan.ie.model.input.AuthenticateModel;
 import com.ashkan.ie.model.input.ResetPassModel;
 import com.ashkan.ie.model.input.UserRegistrationModel;
+import com.ashkan.ie.model.input.UserUpdateModel;
 import com.ashkan.ie.security.jwt.JWTFilter;
 import com.ashkan.ie.security.jwt.TokenProvider;
 import com.ashkan.ie.service.UserService;
@@ -65,6 +66,12 @@ public class UserResource {
     @Path("/password-update")
     public Response updatePassword(ResetPassModel model) {
         userService.resetPassword(model);
+        return Response.ok("OK").type(MediaType.APPLICATION_JSON).build();
+    }
+
+    @PUT
+    public Response updateProfile(UserUpdateModel model) {
+        userService.updateUser(model);
         return Response.ok("OK").type(MediaType.APPLICATION_JSON).build();
     }
 

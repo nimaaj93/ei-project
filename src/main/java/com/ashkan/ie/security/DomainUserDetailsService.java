@@ -1,6 +1,7 @@
 package com.ashkan.ie.security;
 
 import com.ashkan.ie.domain.User;
+import com.ashkan.ie.enumeration.UserStatus;
 import com.ashkan.ie.repository.UserRepository;
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.slf4j.Logger;
@@ -44,6 +45,9 @@ public class DomainUserDetailsService implements UserDetailsService {
     private org.springframework.security.core.userdetails.User createSpringSecurityUser(String username, User user) {
         if (!user.isActivated()) {
             throw new UserNotActivatedException("User " + username + " was not activated");
+        }
+        if (user.getUserStatus() == UserStatus.DISABLED) {
+            throw new UserDisabledException("User is disabled");
         }
         List<GrantedAuthority> grantedAuthorities = Arrays.asList(
                 new SimpleGrantedAuthority(user.getUserAuthority().getAuthorityVal().toString()));

@@ -3,6 +3,7 @@ package com.ashkan.ie.service;
 import com.ashkan.ie.dto.ProfileDTO;
 import com.ashkan.ie.model.input.ResetPassModel;
 import com.ashkan.ie.model.input.UserRegistrationModel;
+import com.ashkan.ie.model.input.UserUpdateModel;
 
 /**
  * Created by K550 VX on 6/6/2019.
@@ -14,5 +15,7 @@ public interface UserService {
     void register(UserRegistrationModel model);
 
     void resetPassword(ResetPassModel model);
+
+    ProfileDTO updateUser(UserUpdateModel model);
 
 }

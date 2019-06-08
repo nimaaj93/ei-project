@@ -99,7 +99,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/v1/user/profile").authenticated()
                 .antMatchers("/api/v1/user/authenticate").permitAll()
-                .antMatchers("/api/v1/user/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/user").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/v1/user").authenticated()
+                .antMatchers("/api/v1/user/password-update").authenticated()
+                .antMatchers("/api/v1/user/password-update").authenticated()
+                .antMatchers("/api/v1/user/profile").authenticated()
+                .antMatchers("/api/v1/ticket/**").authenticated()
+                .antMatchers("/api/v1/ticket/**").authenticated()
+                .antMatchers("/api/v1/user-management/**").authenticated()
                 .and()
                 .apply(securityConfigurerAdapter());
 

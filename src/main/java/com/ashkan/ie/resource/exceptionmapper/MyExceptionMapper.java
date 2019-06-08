@@ -2,6 +2,7 @@ package com.ashkan.ie.resource.exceptionmapper;
 
 import com.ashkan.ie.exception.BaseException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.core.MediaType;
@@ -32,6 +33,16 @@ public class MyExceptionMapper implements ExceptionMapper<Exception> {
         if (e instanceof BadCredentialsException) {
             ExceptionResponse entity = new ExceptionResponse();
             entity.setKey("bad.credentials");
+            entity.setException(e.getClass().getName());
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(entity)
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
+
+        if (e instanceof AuthenticationException) {
+            ExceptionResponse entity = new ExceptionResponse();
+            entity.setKey("user.inactive");
             entity.setException(e.getClass().getName());
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(entity)

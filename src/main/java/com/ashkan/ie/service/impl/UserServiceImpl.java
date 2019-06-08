@@ -12,6 +12,7 @@ import com.ashkan.ie.exception.UnknownException;
 import com.ashkan.ie.exception.UserNotFoundException;
 import com.ashkan.ie.model.input.ResetPassModel;
 import com.ashkan.ie.model.input.UserRegistrationModel;
+import com.ashkan.ie.model.input.UserUpdateModel;
 import com.ashkan.ie.repository.UserAuthenticationRepository;
 import com.ashkan.ie.repository.UserAuthorityRepository;
 import com.ashkan.ie.repository.UserRepository;
@@ -109,5 +110,17 @@ public class UserServiceImpl implements UserService {
 
         userAuthentication.setPassword(model.getNewPassword());
         userAuthenticationRepository.save(userAuthentication);
+    }
+
+    @Override
+    public ProfileDTO updateUser(UserUpdateModel model) {
+        String userName = SecurityUtils.getCurrentUserLogin()
+                .orElseThrow(() -> new IllegalStateException("No username found in security context!"));
+        User user = userRepository.findOneByEmail(userName)
+                .orElseThrow(() -> new IllegalStateException("User not found!"));
+
+        user.setFullname(model.getName());
+
+        return mapToProfile(userRepository.save(user));
     }
 }

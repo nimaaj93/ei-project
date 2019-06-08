@@ -16,6 +16,7 @@ public class UserAuthority extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Enumerated(EnumType.STRING)
     private UserType authorityVal;
     @OneToOne
     private User user;

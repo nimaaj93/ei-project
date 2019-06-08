@@ -28,6 +28,7 @@ public class User extends BaseEntity {
     @OneToOne(mappedBy = "user")
     private UserAuthority userAuthority;
     private boolean activated;
+    @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 
     public Long getId() {
