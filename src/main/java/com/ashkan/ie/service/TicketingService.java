@@ -26,4 +26,6 @@ public interface TicketingService {
 
     TicketDTO updateStatus(TicketStatusUpdateModel model);
 
+    TicketDTO getTicket(Long id);
+
 }

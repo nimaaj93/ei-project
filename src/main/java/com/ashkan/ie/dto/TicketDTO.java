@@ -3,6 +3,8 @@ package com.ashkan.ie.dto;
 import com.ashkan.ie.enumeration.TicketStatus;
 import com.ashkan.ie.enumeration.UserType;
 
+import java.util.List;
+
 /**
  * Created by K550 VX on 6/7/2019.
  */
@@ -18,6 +20,8 @@ public class TicketDTO {
     private UserType creatorUserType;
     private UserType assigneeUserType;
     private TicketStatus ticketStatus;
+
+    private List<TicketCommentDTO> comments;
 
     public Long getId() {
         return id;
@@ -97,5 +101,13 @@ public class TicketDTO {
 
     public void setTicketStatus(TicketStatus ticketStatus) {
         this.ticketStatus = ticketStatus;
+    }
+
+    public List<TicketCommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<TicketCommentDTO> comments) {
+        this.comments = comments;
     }
 }

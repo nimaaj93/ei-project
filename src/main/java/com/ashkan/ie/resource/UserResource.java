@@ -75,4 +75,11 @@ public class UserResource {
         return Response.ok("OK").type(MediaType.APPLICATION_JSON).build();
     }
 
+    @GET
+    public Response getAllUsers() {
+        return Response.ok(userService.getAllUsers())
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+
 }

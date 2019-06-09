@@ -4,12 +4,14 @@ import com.ashkan.ie.domain.User;
 import com.ashkan.ie.domain.UserAuthentication;
 import com.ashkan.ie.domain.UserAuthority;
 import com.ashkan.ie.dto.ProfileDTO;
+import com.ashkan.ie.dto.UserDTO;
 import com.ashkan.ie.enumeration.UserStatus;
 import com.ashkan.ie.enumeration.UserType;
 import com.ashkan.ie.exception.DuplicateUserException;
 import com.ashkan.ie.exception.InvalidOldPasswordException;
 import com.ashkan.ie.exception.UnknownException;
 import com.ashkan.ie.exception.UserNotFoundException;
+import com.ashkan.ie.mapper.UserMapper;
 import com.ashkan.ie.model.input.ResetPassModel;
 import com.ashkan.ie.model.input.UserRegistrationModel;
 import com.ashkan.ie.model.input.UserUpdateModel;
@@ -21,6 +23,9 @@ import com.ashkan.ie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by K550 VX on 6/6/2019.
@@ -34,6 +39,8 @@ public class UserServiceImpl implements UserService {
     private UserAuthenticationRepository userAuthenticationRepository;
     @Autowired
     private UserAuthorityRepository userAuthorityRepository;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public ProfileDTO getProfile() {
@@ -122,5 +129,13 @@ public class UserServiceImpl implements UserService {
         user.setFullname(model.getName());
 
         return mapToProfile(userRepository.save(user));
+    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
     }
 }

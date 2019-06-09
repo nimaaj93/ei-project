@@ -118,4 +118,13 @@ public class TicketingServiceImpl implements TicketingService {
         Ticket persistedTicket = ticketRepository.save(ticket);
         return ticketMapper.toDto(persistedTicket);
     }
+
+    @Override
+    public TicketDTO getTicket(Long id) {
+
+        Ticket ticket = ticketRepository.findById(id)
+                .orElseThrow(TicketNotFoundException::new);
+
+        return ticketMapper.toDto(ticket);
+    }
 }

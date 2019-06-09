@@ -101,6 +101,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/user/authenticate").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/user").permitAll()
                 .antMatchers(HttpMethod.PUT, "/api/v1/user").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/v1/user").authenticated()
                 .antMatchers("/api/v1/user/password-update").authenticated()
                 .antMatchers("/api/v1/user/password-update").authenticated()
                 .antMatchers("/api/v1/user/profile").authenticated()

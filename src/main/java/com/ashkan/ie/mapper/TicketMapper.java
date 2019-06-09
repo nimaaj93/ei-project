@@ -7,6 +7,7 @@ import com.ashkan.ie.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -43,7 +44,7 @@ public class TicketMapper implements EntityMapper<TicketDTO, Ticket> {
                 });
 
         if (entity.getComments() != null) {
-            entity.getComments().stream()
+            List<TicketCommentDTO> comments = entity.getComments().stream()
                     .map(ticketComment -> {
                         TicketCommentDTO commentDTO = new TicketCommentDTO();
                         commentDTO.setId(ticketComment.getId());
@@ -56,6 +57,7 @@ public class TicketMapper implements EntityMapper<TicketDTO, Ticket> {
                                 });
                         return commentDTO;
                     }).collect(Collectors.toList());
+            ticketDTO.setComments(comments);
         }
 
         return ticketDTO;
