@@ -1,0 +1,38 @@
+/*fade transition*/
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .25s;
+}
+
+.fade-enter-active {
+  transition-delay: .25s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
+
+/*slide transtion*/
+.slide-leave-active,
+.slide-enter-active {
+  transition: 1s;
+}
+.slide-enter {
+  transform: translate(0, 100%);
+}
+.slide-leave-to {
+  transform: translate(0, -100%);
+}
+
+/*dropdown transition*/
+.dropdown-leave-active,
+.dropdown-enter-active {
+  transition-property: opacity;
+  transition: 1s;
+}
+.dropdown-enter {
+  transform: translateY(0%);
+}
+.dropdown-leave-to {
+  transform: translateY(100%);
+}
