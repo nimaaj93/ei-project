@@ -1,9 +1,6 @@
 <template>
     <div>
-        <!--<div v-bar="{ preventParentScroll: true}" style="min-height: 100vh">-->
-
         <notifications-panel></notifications-panel>
-
         <app-header></app-header>
         <side-bar></side-bar>
         <!-- Main content -->
@@ -12,10 +9,6 @@
             <!-- Breadcrumb -->
             <ol class="breadcrumb">
                 <router-link tag="li" class="breadcrumb-item" to="/home">خانه</router-link>
-                <!--<router-link v-for="item in $store.state.breadcrumb"-->
-                             <!--:key="item.path"-->
-                             <!--:to="item.path"-->
-                             <!--class="breadcrumb-item">{{item.title | message}}</router-link>-->
 
                 <!-- Breadcrumb Menu-->
                 <li class="breadcrumb-menu">
@@ -26,16 +19,12 @@
             </ol>
 
             <div class="container-fluid">
-                <!--<div class="animated fadeIn">-->
                 <transition name="fade">
                     <router-view></router-view>
                 </transition>
-                <!--</div>-->
             </div>
 
         </main>
-
-        <!--<aside-menu></aside-menu>-->
 
         <app-footer></app-footer>
     </div>

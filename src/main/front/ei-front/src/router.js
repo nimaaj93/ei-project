@@ -14,12 +14,24 @@ export default new Router({
         },
         {
             path: '/login',
-            name: 'login',
+            name: 'Login',
             component: () => import('./views/Login.vue'),
             meta: {
                 layout: 'simple',
                 authenticated: false
             }
-        }
+        },{
+            path: '/home',
+            name: 'Home',
+            component: () => import('./views/Home.vue'),
+            meta: {
+                layout: 'default',
+                authenticated: true
+            }
+        },
+        {
+            path: '*',
+            redirect: '/login'
+        },
     ]
 })

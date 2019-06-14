@@ -45,12 +45,13 @@
                 return false;
             },
             hasAuthority(authorityVal) {
-                if (this.$store.state.authorities.find((item) => {
-                        return item.authorityName == authorityVal
-                    } )) {
-                    return true;
-                }
-                return false;
+//                if (this.$store.state.authorities.find((item) => {
+//                        return item.authorityName == authorityVal
+//                    } )) {
+//                    return true;
+//                }
+//                return false;
+                return true;
             }
         }
     }
