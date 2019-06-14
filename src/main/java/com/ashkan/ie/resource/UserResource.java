@@ -1,10 +1,13 @@
 package com.ashkan.ie.resource;
 
+import com.ashkan.ie.dto.UserDTO;
+import com.ashkan.ie.enumeration.UserType;
 import com.ashkan.ie.model.JWTToken;
 import com.ashkan.ie.model.input.AuthenticateModel;
 import com.ashkan.ie.model.input.ResetPassModel;
 import com.ashkan.ie.model.input.UserRegistrationModel;
 import com.ashkan.ie.model.input.UserUpdateModel;
+import com.ashkan.ie.security.SecurityUtils;
 import com.ashkan.ie.security.jwt.JWTFilter;
 import com.ashkan.ie.security.jwt.TokenProvider;
 import com.ashkan.ie.service.UserService;
@@ -20,6 +23,8 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by K550 VX on 6/6/2019.
@@ -77,7 +82,14 @@ public class UserResource {
 
     @GET
     public Response getAllUsers() {
-        return Response.ok(userService.getAllUsers())
+
+        List<UserDTO> userDTOS = userService.getAllUsers()
+                .stream()
+                .filter(userDTO -> !userDTO.getEmail().equals(SecurityUtils.getCurrentUserLogin().get()))
+                .filter(userDTO -> userDTO.getUserType() != UserType.STUDENT)
+                .collect(Collectors.toList());
+
+        return Response.ok(userDTOS)
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }

@@ -77,7 +77,6 @@
                     if (result) {
 
                         axios.post('/api/v1/user/authenticate', {
-                            grant_type: 'password',
                             username: this.credentials.username,
                             password: this.credentials.password
                         })

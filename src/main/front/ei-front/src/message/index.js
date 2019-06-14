@@ -26,4 +26,8 @@ export default {
     'new.password': 'رمز عبور جدید',
     'common.submit': 'ثبت',
     'reset.password': 'تغییر رمز عبور',
+    'ticket.submit.success' : 'تیکت با موفقیت ثبت شد.',
+    'common.title' : 'عنوان',
+    'ticket.body': "متن",
+    'assignee.user': "ارجاع به",
 }

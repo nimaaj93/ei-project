@@ -36,6 +36,14 @@ export default new Router({
                 layout: 'default',
                 authenticated: true
             }
+        },{
+            path: '/create-ticket',
+            name: 'CreateTicket',
+            component: () => import('./views/CreateTicket.vue'),
+            meta: {
+                layout: 'default',
+                authenticated: true
+            }
         },
         {
             path: '*',
