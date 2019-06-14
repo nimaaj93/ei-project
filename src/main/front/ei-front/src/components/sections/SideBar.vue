@@ -1,24 +1,13 @@
 <template>
     <div class="sidebar">
-        <nav class="sidebar-nav ps ps--active-y">
+        <nav class="sidebar-nav">
             <ul class="nav">
                 <li class="nav-item">
                     <router-link class="nav-link" to="/home"><i class="icon-speedometer"></i> داشبرد</router-link>
                 </li>
-
-                <!-- messaging -->
-                <li class="nav-item nav-dropdown">
-                    <a class="nav-link nav-dropdown-toggle">
-                        <i class="icon-speech"></i>
-                        {{'menu.messaging' | message}}
-                    </a>
-                    <ul class="nav-dropdown-items">
-                        <li class="nav-item">
-                            <router-link class="nav-link" to="/home"> <i class="icon-pencil"></i> {{'menu.send.message' | message}}</router-link>
-                        </li>
-                    </ul>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/profile"><i class="icon-speedometer"></i> داشبرد</router-link>
                 </li>
-
 
             </ul>
         </nav>
