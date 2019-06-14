@@ -3,12 +3,26 @@
         <nav class="sidebar-nav">
             <ul class="nav">
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/home"><i class="icon-speedometer"></i> داشبرد</router-link>
+                    <router-link class="nav-link" to="/home"><i class="icon-speedometer"></i> {{'menu.dashboard' | message}} </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/profile"><i class="icon-speedometer"></i> داشبرد</router-link>
+                    <router-link class="nav-link" to="/profile"><i class="fa fa-user"></i> {{'menu.profile' | message}} </router-link>
                 </li>
-
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/profile"><i class="fa fa-ticket"></i> {{'menu.create.ticket' | message}} </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/profile"><i class="fa fa-tags"></i> {{'menu.manage.user.ticket' | message}} </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/profile"><i class="fa fa-users"></i> {{'menu.user.list' | message}} </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/profile"><i class="fa fa-users"></i> {{'menu.unconfirmed.user.lists' | message}} </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/profile"><i class="fa fa-list"></i> {{'menu.tickets.management' | message}} </router-link>
+                </li>
             </ul>
         </nav>
     </div>
@@ -25,22 +39,13 @@
             })
         },
         methods: {
-            hasOneOf(authorityList) {
-                for (let authority of authorityList) {
-                    if (this.hasAuthority(authority)) {
-                        return true;
-                    }
+            hasAuthority(authorityVal) {
+                if (this.$store.state.authorities.find((item) => {
+                        return item == authorityVal
+                    } )) {
+                    return true;
                 }
                 return false;
-            },
-            hasAuthority(authorityVal) {
-//                if (this.$store.state.authorities.find((item) => {
-//                        return item.authorityName == authorityVal
-//                    } )) {
-//                    return true;
-//                }
-//                return false;
-                return true;
             }
         }
     }

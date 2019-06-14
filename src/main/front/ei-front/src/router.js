@@ -28,6 +28,14 @@ export default new Router({
                 layout: 'default',
                 authenticated: true
             }
+        },{
+            path: '/profile',
+            name: 'Profile',
+            component: () => import('./views/Profile.vue'),
+            meta: {
+                layout: 'default',
+                authenticated: true
+            }
         },
         {
             path: '*',

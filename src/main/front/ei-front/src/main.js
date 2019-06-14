@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// import axios from 'axios'
+import axios from 'axios'
 import tether from 'tether'
 import VeeValidate from 'vee-validate'
 import Notifications from 'vue-notification'
@@ -78,8 +78,47 @@ Vue.filter('message', (value) => {
     return ''
 });
 
-new Vue({
+const vueInstance = new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+});
+
+axios.interceptors.request.use(
+    function (request) {
+
+        if (request.url && store.state.accessToken) {
+            request.headers['Authorization'] = 'Bearer ' + store.state.accessToken
+        }
+
+        return request;
+    }
+)
+
+axios.interceptors.response.use(
+    function (response) {
+
+        if (response.status === 401) {
+            router.replace('/login');
+        }
+        return response;
+    },
+    function (error) {
+        if (error.response) {
+            if (error.response.status && error.response.status === 401) {
+                router.replace('/login');
+            } else {
+                if (error.response.data.key) {
+                    vueInstance.$notify({
+                        group: 'error',
+                        title: vueInstance.$options.filters.message('common.error.header'),
+                        text: vueInstance.$options.filters.message(error.response.data.key)
+                    });
+                }
+            }
+        }
+        return Promise.reject(error.response);
+    }
+)
+
+vueInstance.$mount('#app');
