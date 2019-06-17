@@ -6,6 +6,7 @@ import com.ashkan.ie.model.input.TicketStatusUpdateModel;
 import com.ashkan.ie.service.TicketingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
@@ -55,16 +56,18 @@ public class TicketResource {
 
     @GET
     @Path("/user-created")
-    public Response getUserCreatedTickets() {
-        return Response.ok(ticketingService.getUserCreatedTickets())
+    public Response getUserCreatedTickets(@QueryParam("page") Integer page,
+                                          @QueryParam("size") Integer size) {
+        return Response.ok(ticketingService.getUserCreatedTickets(PageRequest.of(page, size)))
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }
 
     @GET
     @Path("/user-assigned")
-    public Response getUserAssignedTickets() {
-        return Response.ok(ticketingService.getUserAssignedTickets())
+    public Response getUserAssignedTickets(@QueryParam("page") Integer page,
+                                           @QueryParam("size") Integer size) {
+        return Response.ok(ticketingService.getUserAssignedTickets(PageRequest.of(page, size)))
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }

@@ -18,9 +18,9 @@ public interface TicketingService {
 
     TicketDTO createTicket(TicketCreateModel model);
 
-    List<TicketDTO> getUserAssignedTickets();
+    Page<TicketDTO> getUserAssignedTickets(Pageable pageable);
 
-    List<TicketDTO> getUserCreatedTickets();
+    Page<TicketDTO> getUserCreatedTickets(Pageable pageable);
 
     TicketDTO addComment(TicketCommentCreateModel model);
 

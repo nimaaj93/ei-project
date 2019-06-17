@@ -12,7 +12,7 @@
                     <router-link class="nav-link" to="/create-ticket"><i class="fa fa-ticket"></i> {{'menu.create.ticket' | message}} </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/profile"><i class="fa fa-tags"></i> {{'menu.manage.user.ticket' | message}} </router-link>
+                    <router-link class="nav-link" to="/user-tickets"><i class="fa fa-tags"></i> {{'menu.manage.user.ticket' | message}} </router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/profile"><i class="fa fa-users"></i> {{'menu.user.list' | message}} </router-link>

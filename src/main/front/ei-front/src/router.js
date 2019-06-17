@@ -44,6 +44,14 @@ export default new Router({
                 layout: 'default',
                 authenticated: true
             }
+        },{
+            path: '/user-tickets',
+            name: 'UserTickets',
+            component: () => import('./views/UserTickets.vue'),
+            meta: {
+                layout: 'default',
+                authenticated: true
+            }
         },
         {
             path: '*',

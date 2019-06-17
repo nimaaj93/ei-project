@@ -74,15 +74,17 @@ public class TicketingServiceImpl implements TicketingService {
     }
 
     @Override
-    public List<TicketDTO> getUserAssignedTickets() {
+    public Page<TicketDTO> getUserAssignedTickets(Pageable pageable) {
         Long userId = userService.getProfile().getId();
-        return ticketMapper.toDto(ticketRepository.findAllByAssigneeUserId(userId));
+        return ticketRepository.findAllByAssigneeUserId(pageable, userId)
+                .map(ticketMapper::toDto);
     }
 
     @Override
-    public List<TicketDTO> getUserCreatedTickets() {
+    public Page<TicketDTO> getUserCreatedTickets(Pageable pageable) {
         Long userId = userService.getProfile().getId();
-        return ticketMapper.toDto(ticketRepository.findAllByCreatorUserId(userId));
+        return ticketRepository.findAllByCreatorUserId(pageable, userId)
+                .map(ticketMapper::toDto);
     }
 
     @Override

@@ -30,4 +30,12 @@ export default {
     'common.title' : 'عنوان',
     'ticket.body': "متن",
     'assignee.user': "ارجاع به",
+    'user.tickets.created' : 'تیکت های صادر شده من',
+    'user.tickets.assigned' : 'ارجاع داده شده به من',
+    'common.row': 'ردیف',
+    'ticket.creator': 'صادر کننده',
+    'ticket.assignee': 'گیرنده',
+    'common.status': 'وضعیت',
+    'common.empty.table.text': 'موردی یافت نشد.',
+    'common.actions': 'عملیات',
 }
