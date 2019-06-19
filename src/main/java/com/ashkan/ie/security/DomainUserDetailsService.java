@@ -42,7 +42,7 @@ public class DomainUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User with email " + login + " was not found in the database"));
     }
 
-    private org.springframework.security.core.userdetails.User createSpringSecurityUser(String username, User user) {
+    private CustomUserDetails createSpringSecurityUser(String username, User user) {
         if (!user.isActivated()) {
             throw new UserNotActivatedException("User " + username + " was not activated");
         }
@@ -51,8 +51,9 @@ public class DomainUserDetailsService implements UserDetailsService {
         }
         List<GrantedAuthority> grantedAuthorities = Arrays.asList(
                 new SimpleGrantedAuthority(user.getUserAuthority().getAuthorityVal().toString()));
-        return new org.springframework.security.core.userdetails.User(username,
+        return new CustomUserDetails(username,
                 user.getUserAuthentication().getPassword(),
-                grantedAuthorities);
+                grantedAuthorities,
+                user.getId());
     }
 }

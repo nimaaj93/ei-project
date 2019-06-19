@@ -1,5 +1,7 @@
 package com.ashkan.ie.security.jwt;
 
+import com.ashkan.ie.repository.UserRepository;
+import com.ashkan.ie.security.CustomUserDetails;
 import com.ashkan.ie.util.IeProperties;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -29,6 +31,7 @@ public class TokenProvider {
     private final Logger log = LoggerFactory.getLogger(TokenProvider.class);
 
     private static final String AUTHORITIES_KEY = "auth";
+    private static final String USER_ID_KEY = "userId";
 
     private Key key;
 
@@ -37,6 +40,8 @@ public class TokenProvider {
     private long tokenValidityInMillisecondsForRememberMe;
     @Autowired
     private IeProperties ieProperties;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostConstruct
     public void init() {
@@ -58,9 +63,8 @@ public class TokenProvider {
     }
 
     public String createToken(Authentication authentication, boolean rememberMe) {
-//        String authorities = authentication.getAuthorities().stream()
-//            .map(GrantedAuthority::getAuthority)
-//            .collect(Collectors.joining(","));
+
+        CustomUserDetails customUserDetails = (CustomUserDetails)authentication.getPrincipal();
 
         long now = (new Date()).getTime();
         Date validity;
@@ -73,6 +77,7 @@ public class TokenProvider {
         return Jwts.builder()
             .setSubject(authentication.getName())
             .claim(AUTHORITIES_KEY, authentication.getAuthorities())
+            .claim(USER_ID_KEY, customUserDetails.getUserId())
             .signWith(key, SignatureAlgorithm.HS512)
             .setExpiration(validity)
             .compact();
