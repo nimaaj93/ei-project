@@ -38,4 +38,7 @@ export default {
     'common.status': 'وضعیت',
     'common.empty.table.text': 'موردی یافت نشد.',
     'common.actions': 'عملیات',
+    'user.activate.success': 'فعال سازی کاربر با موفقیت انجام شد.',
+    'user.activated': 'فعال شده',
+    'user.activate': 'فعال سازی'
 }

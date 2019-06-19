@@ -60,6 +60,14 @@ export default new Router({
                 layout: 'default',
                 authenticated: true
             }
+        },{
+            path: '/unconfirmed-users',
+            name: 'UnconfirmedUsers',
+            component: () => import('./views/UnconfirmedUsers.vue'),
+            meta: {
+                layout: 'default',
+                authenticated: true
+            }
         },
         {
             path: '*',
