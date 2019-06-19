@@ -38,7 +38,11 @@ export default {
     'common.status': 'وضعیت',
     'common.empty.table.text': 'موردی یافت نشد.',
     'common.actions': 'عملیات',
-    'user.activate.success': 'فعال سازی کاربر با موفقیت انجام شد.',
-    'user.activated': 'فعال شده',
-    'user.activate': 'فعال سازی'
+    'user.activate.success': 'تایید کاربر با موفقیت انجام شد.',
+    'user.activated': 'تایید شده',
+    'user.activate': 'تایید',
+    'user.enable': 'فعال سازی',
+    'user.disable': 'غیر فعال سازی',
+    'user.enable.success': 'فعال سازی کاربر با موفقیت انجام شد.',
+    'user.disable.success': 'غیر فعال سازی کاربر با موفقیت انجام شد.',
 }

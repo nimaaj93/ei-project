@@ -68,6 +68,14 @@ export default new Router({
                 layout: 'default',
                 authenticated: true
             }
+        },{
+            path: '/user-list',
+            name: 'UserList',
+            component: () => import('./views/UserList.vue'),
+            meta: {
+                layout: 'default',
+                authenticated: true
+            }
         },
         {
             path: '*',
