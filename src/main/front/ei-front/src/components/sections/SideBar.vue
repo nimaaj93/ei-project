@@ -21,7 +21,7 @@
                     <router-link class="nav-link" to="/profile"><i class="fa fa-users"></i> {{'menu.unconfirmed.user.lists' | message}} </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/profile"><i class="fa fa-list"></i> {{'menu.tickets.management' | message}} </router-link>
+                    <router-link class="nav-link" to="/tickets-management"><i class="fa fa-list"></i> {{'menu.tickets.management' | message}} </router-link>
                 </li>
             </ul>
         </nav>

@@ -52,6 +52,14 @@ export default new Router({
                 layout: 'default',
                 authenticated: true
             }
+        },{
+            path: '/tickets-management',
+            name: 'TicketsManagement',
+            component: () => import('./views/TicketsManagement.vue'),
+            meta: {
+                layout: 'default',
+                authenticated: true
+            }
         },
         {
             path: '*',
