@@ -58,7 +58,8 @@ export default new Router({
             component: () => import('./views/TicketsManagement.vue'),
             meta: {
                 layout: 'default',
-                authenticated: true
+                authenticated: true,
+                authority: 'ADMIN',
             }
         },{
             path: '/unconfirmed-users',
@@ -66,7 +67,8 @@ export default new Router({
             component: () => import('./views/UnconfirmedUsers.vue'),
             meta: {
                 layout: 'default',
-                authenticated: true
+                authenticated: true,
+                authority: 'ADMIN',
             }
         },{
             path: '/user-list',
@@ -74,7 +76,8 @@ export default new Router({
             component: () => import('./views/UserList.vue'),
             meta: {
                 layout: 'default',
-                authenticated: true
+                authenticated: true,
+                authority: 'ADMIN',
             }
         },{
             path: '/signup',

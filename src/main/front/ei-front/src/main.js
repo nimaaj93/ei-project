@@ -16,17 +16,45 @@ Vue.config.productionTip = false
 Vue.use(VeeValidate);
 Vue.use(Notifications);
 
+
+function hasAuthority(authorityVal) {
+    if (store.state.authorities.find((item) => {
+            return item == authorityVal
+        } )) {
+        return true;
+    }
+    return false;
+}
+
 // router navigation guard
 router.beforeEach((to, from, next) => {
     store.commit('SET_LAYOUT',to.meta.layout);
 
+    let authenticationOk;
+    let authorityOk;
+
     if (to.meta.authenticated && store.state.authenticated) {
-        next();
+        authenticationOk = true;
     } else if (to.meta.authenticated && !store.state.authenticated) {
-        next("/login");
+        authenticationOk = false;
     } else if (!to.meta.authenticated) {
-        next();
+        authenticationOk = true;
     }
+
+    if (to.meta.authority && hasAuthority(to.meta.authority)) {
+        authorityOk = true;
+    } else if (to.meta.authority && !hasAuthority(to.meta.authority)) {
+        authorityOk = false;
+    } else {
+        authorityOk = true;
+    }
+
+    if (authenticationOk && authorityOk) {
+        next();
+    } else {
+        next("/login");
+    }
+
 });
 
 // font files
