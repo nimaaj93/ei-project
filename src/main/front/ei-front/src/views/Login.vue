@@ -1,9 +1,9 @@
 <template>
   <div class="container" style="padding-top: 100px;">
     <div class="row">
-      <div class="col-lg-8 col-md-10 m-x-auto pull-xs-none">
+      <div class="col-lg-4 col-md-6 m-x-auto pull-xs-none">
         <div class="card-group">
-          <div class="card p-a-2 col-lg-6 col-xs-12 login-card">
+          <div class="card p-a-2 login-card">
             <div class="card-block text-xs-center">
               <h1>{{'login.top.title' | message}}</h1>
               <p class="text-muted">{{'login.top.text' | message}}</p>
@@ -37,22 +37,20 @@
               </div>
               <div class="row">
                 <div class="col-xs-6 m-x-auto pull-xs-none">
-                  <button type="button" class="btn btn-primary p-x-2" @click="login">
-                    <i class="icon-login"></i>
-                    {{'common.login' | message}}
-                  </button>
+                  <div class="row">
+                    <span class="col-md-6">
+                      <button type="button" class="btn btn-primary p-x-2 margined" @click="login">
+                        <i class="icon-login"></i>
+                        {{'common.login' | message}}
+                      </button>
+                    </span>
+                    <span class="col-md-6">
+                      <router-link tag="button" class="btn btn-success p-x-2 margined" to="/signup">
+                        {{'common.register' | message}}
+                      </router-link>
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="card card-inverse card-primary p-y-3 col-lg-6 col-xs-12 login-card logo-box">
-            <div class="card-block text-xs-center">
-              <div>
-                <!--<img src="@/assets/img/"-->
-                     <!--alt="logo" class="fill-keep-aspect"/>-->
-              </div>
-              <div>
-                {{'login.sublogo.text' | message}}
               </div>
             </div>
           </div>

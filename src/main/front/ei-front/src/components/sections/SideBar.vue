@@ -14,13 +14,13 @@
                 <li class="nav-item">
                     <router-link class="nav-link" to="/user-tickets"><i class="fa fa-tags"></i> {{'menu.manage.user.ticket' | message}} </router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="hasAuthority('ADMIN')">
                     <router-link class="nav-link" to="/user-list"><i class="fa fa-users"></i> {{'menu.user.list' | message}} </router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="hasAuthority('ADMIN')">
                     <router-link class="nav-link" to="/unconfirmed-users"><i class="fa fa-users"></i> {{'menu.unconfirmed.user.lists' | message}} </router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="hasAuthority('ADMIN')">
                     <router-link class="nav-link" to="/tickets-management"><i class="fa fa-list"></i> {{'menu.tickets.management' | message}} </router-link>
                 </li>
             </ul>

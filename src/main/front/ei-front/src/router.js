@@ -76,6 +76,14 @@ export default new Router({
                 layout: 'default',
                 authenticated: true
             }
+        },{
+            path: '/signup',
+            name: 'SignUp',
+            component: () => import('./views/SignUp.vue'),
+            meta: {
+                layout: 'simple',
+                authenticated: false
+            }
         },
         {
             path: '*',
