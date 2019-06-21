@@ -45,6 +45,11 @@
                                         {{ticket.ticketStatus}}
                                     </td>
                                     <td class="text-xs-center">
+
+                                        <button class="btn btn-secondary btn-sm" @click="openDetails(ticket)">
+                                            {{ 'ticket.details' | message}}
+                                        </button>
+
                                     </td>
                                 </tr>
                                 </tbody>
@@ -80,17 +85,25 @@
                 </div>
             </div>
 
+            <ticket-details ref="ticketDetailsDlg" :ticketid="selectedTicket.id">
+            </ticket-details>
+
         </div>
     </div>
 </template>
 <script>
+
+    /* eslint-disable */
+
     import axios from 'axios'
     import Lazy from '@/components/util/Lazy'
+    import TicketDetails from '@/components/dialogs/TicketDetails'
 
     export default {
         name: 'UserTickets',
         components: {
-            Lazy
+            Lazy,
+            TicketDetails,
         },
         data() {
             return {
@@ -101,6 +114,8 @@
                 loaded: true,
                 tabIndex: 0,
                 tickets: {},
+                selectedTicket: {
+                },
             }
         },
         created() {
@@ -160,7 +175,14 @@
             setPage(newPage) {
                 this.searchParams.page = newPage - 1;
                 this.loadData();
-            }
+            },
+            openDetails(ticket) {
+                this.selectedTicket = ticket;
+                this.$nextTick(() => {
+                    this.$refs.ticketDetailsDlg.load();
+                    $('#taskDetails').modal('show');
+                });
+            },
         }
     }
 </script>

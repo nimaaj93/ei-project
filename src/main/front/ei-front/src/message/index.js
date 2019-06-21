@@ -56,4 +56,7 @@ export default {
     'ticket.not.found': 'تیکت یافت نشد.',
     'unknown.exception': 'خطای ناشناخته',
     'bad.credentials': 'نام کاربری یا رمز عبور نادرست است.',
+    'ticket.details': 'جزِئیات',
+    'comment.add.success': 'نظر با موفقیت ثبت شد.',
+    'common.required' : 'اجباری',
 }
